@@ -11,33 +11,34 @@
     </head>
     <body>
         <div class="calc-wrapper">
-            <input type="text" class="calculator__screen" value="" disabled />
+            <input type="text" id="display" class="calculator__screen" value="" disabled />
             <div class="calculator__keys">
-                <button type="button" class="operator" value="+">+</button>
-                <button type="button" class="operator" value="-">-</button>
-                <button type="button" class="operator" value="*">&times;</button>
-                <button type="button" class="operator" value="/">&divide;</button>
+                <button type="button" id="add" class="operator" value="+">+</button>
+                <button type="button" id="subtract" class="operator" value="-">-</button>
+                <button type="button" id="multiply" class="operator" value="*">&times;</button>
+                <button type="button" id="divide" class="operator" value="/">&divide;</button>
 
-                <button type="button" value="7">7</button>
-                <button type="button" value="8">8</button>
-                <button type="button" value="9">9</button>
+                <button type="button" id="seven" class="number" value="7">7</button>
+                <button type="button" id="eight" class="number" value="8">8</button>
+                <button type="button" id="nine" class="number" value="9">9</button>
 
-                <button type="button" value="4">4</button>
-                <button type="button" value="5">5</button>
-                <button type="button" value="6">6</button>
+                <button type="button" id="four" class="number" value="4">4</button>
+                <button type="button" id="five" class="number" value="5">5</button>
+                <button type="button" id="six" class="number" value="6">6</button>
 
-                <button type="button" value="1">1</button>
-                <button type="button" value="2">2</button>
-                <button type="button" value="3">3</button>
+                <button type="button" id="one" class="number" value="1">1</button>
+                <button type="button" id="two" class="number" value="2">2</button>
+                <button type="button" id="three" class="number" value="3">3</button>
 
-                <button type="button" value="0">0</button>
-                <button type="button" class="decimal" value=".">.</button>
-                <button type="button" class="all__clear" value="all__clear">AC</button>
+                <button type="button" id="zero" class="number" value="0">0</button>
+                <button type="button" id="decimal" class="decimal" value=".">.</button>
+                <button type="button" id="clear" class="all__clear" value="all__clear">AC</button>
 
-                <button type="button" class="equal__sign operator" value="=">=</button>
+                <button type="button" id="equals" class="equal__sign operator" value="=">=</button>
             </div><!--.calulator__keys-->
         </div><!--.calc-wrapper-->
 
         <script src="/scripts/main.js"></script>
+        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
     </body>
 </html>
