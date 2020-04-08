@@ -1,56 +1,58 @@
+const keys = document.getElementById('keys');
 const calculator ={
     displayValue: '0',
     firstOperand: null,
+    secondOperand: null,
+    operatorFlag: false,
     waitingForSecondOperand: false,
     operator: null,
+    ans: '0'
 };
 
 //Inputting the digits
-function inputDigit(digit) {
-    const { displayValue, waitingForSecondOperand } = calculator;
-    //Overwrite `displayValue` if the current value is '0' otherwise append to it
-        if (waitingForSecondOperand === true) {
-            calculator.displayValue = digit;
-            calculator.waitingForSecondOperand = false;
-        } else {
-            calculator.displayValue = displayValue === '0' ? digit : displayValue + digit;
-        }
-        console.log(calculator);
+function inputDigits(digits) {
+    if (calculator.operatorFlag === true) {
+        calculator.displayValue = digits;
+        calculator.operatorFlag = false;
+    } else {
+        calculator.displayValue === '0' ? (calculator.displayValue = digits) : (calculator.displayValue += digits);
     }
+}
     
 
-function inputDecimal(dot) {
+function inputDecimal(decimal) {
     //Prevents decimal point from being appended to displayValue
-    if (calculator.waitingForSecondOperand === true) return;
+    if (calculator.operatorFlag === true) return;
     //If the `displayValue` does not contain a decimal point
-    if (!calculator.displayValue.includes(dot)){
+    if (!calculator.displayValue.includes(decimal)){
         //Append the decimal point
-        calculator.displayValue += dot;
+        calculator.displayValue += decimal;
     }
 }
 
 //Handling Operators
-function handleOperator(nextOperator) {
-    const { firstOperand, displayValue, operator } = calculator
-    const inputValue = parseFloat(displayValue);
-
-    if (operator && calculator.waitingForSecondOperand){
-        calculator.operator = nextOperator;
+function handleOperator(newOperator) {
+    let { firstOperand, operator, displayValue, operatorFlag } = calculator;
+    let inputValue = parseFloat(displayValue);
+    if(operator && operatorFlag === true) {
+        calculator.operator = newOperator;
         return;
     }
-
     if (firstOperand === null) {
         calculator.firstOperand = inputValue;
     } else if (operator) {
-        const result = performCalculation[operator](firstOperand, inputValue);
-
+        calculator.secondOperand = parseFloat(displayValue);
+        const result = calculate[calculator.operator](
+            calculator.firstOperand,
+            calculator.secondOperand
+        );
         calculator.displayValue = String(result);
         calculator.firstOperand = result;
+        calculator.ans = formatDisplay(String(result));
     }
-
-    calculator.waitingForSecondOperand = true;
-    calculator.operator = nextOperator;
-    console.log(calculator);
+    calculator.displayValue = formatDisplay(calculator.displayValue);
+    calculator.operatorFlag = true;
+    calculator.operator = newOperator;
 }
 
 const performCalculation = {
@@ -72,7 +74,7 @@ function resetCalculator () {
 
 //Updating the display
 function updateDisplay() {
-    const display = document.querySelector('.calculator__screen');
+    const display = document.getElementById('display');
     display.value = calculator.displayValue;
 }
 updateDisplay();
